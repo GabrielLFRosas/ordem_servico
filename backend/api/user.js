@@ -12,6 +12,9 @@ module.exports = app => {
         const user = { ...req.body }
         if (req.params.id) user.id = req.params.id
 
+        if(!req.originalUrl.startsWith('/users')) user.admin = false
+        if(!req.user || !req.user.admin ) user.admin = false
+
         try{
             existsOrError(user.name, 'Nome não foi informado')
             existsOrError(user.email, 'Email não foi informado')
@@ -48,12 +51,13 @@ module.exports = app => {
     const get = (req, res) => {
         if (!req.params.id){
             app.db('users')
-                .select('id', 'name', 'email', 'identity', 'number')
+                .select('id', 'name', 'email', 'identity', 'number','contributor', 'admin', 'deletedAt')
+                .where({deletedAt: null})
                 .then(users => res.json(users))
                 .catch(err => res.status(500).send(err))
         } else {
             app.db('users')
-                .select('id', 'name', 'email', 'identity', 'number')
+                .select('id', 'name', 'email', 'identity', 'number','contributor', 'admin')
                 .where({id: req.params.id})
                 .then(users => res.json(users))
                 .catch(err => res.status(500).send(err))
