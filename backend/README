@@ -1,0 +1,10 @@
+#### RODAR O SISTEMA 
+NODE - v16.17.0
+POSTGRESQL - 14
+  #### COMANDOS 
+    - npm i 
+
+#### CRIAÇÃO DE MIGRAÇÃO 
+  - knex migrate:make <NOME DA MIGRATE>
+#### RODAR MIGRAÇÕES
+  - knex migrate:latest
