@@ -3,7 +3,9 @@ NODE - v16.17.0
 POSTGRESQL - 14
   #### COMANDOS 
     - npm i 
-
+    - npm start
+  #### CONECTAR NO BANCO
+    - psql -U postgres
 #### CRIAÇÃO DE MIGRAÇÃO 
   - knex migrate:make <NOME DA MIGRATE>
 #### RODAR MIGRAÇÕES
